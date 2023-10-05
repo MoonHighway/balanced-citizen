@@ -14,15 +14,16 @@ export default async function Home() {
     .from("activities")
     .select();
 
-  const strive = activities
-    .filter((activity) => activity.category === "strivin")
-    .reduce((a, c) => a + c.length, 0);
-  const work = activities
-    .filter((activity) => activity.category === "workin")
-    .reduce((a, c) => a + c.length, 0);
-  const thrive = activities
-    .filter((activity) => activity.category === "thrivin")
-    .reduce((a, c) => a + c.length, 0);
+  function calculateTotal(category) {
+    return activities
+      .filter((activity) => activity.category === category)
+      .reduce((a, c) => a + c.length, 0);
+  }
+
+  const strive = calculateTotal("strivin");
+  const work = calculateTotal("workin");
+  const thrive = calculateTotal("thrivin");
+
   const total = strive + work + thrive;
   const hoursLeft = 24 - total;
 
