@@ -33,7 +33,6 @@ export default async function Home() {
         <div className="bg-white p-8 rounded-lg shadow-md">
           <SignedOut>
             <div>
-              <div></div>
               <h1 className="text-3xl font-bold mb-4">
                 Find More Balance
               </h1>
@@ -58,16 +57,17 @@ export default async function Home() {
             </div>
           </SignedOut>
           <SignedIn>
-            <div>
-              <h2 className="text-xl">
-                Add a new activity
+            <div className="loose-leading">
+              <h2 className="text-2xl font-semibold">
+                Add a New Activity
               </h2>
-              <Form />
-            </div>
-            <div>
-              <h2 className="leading-loose text-xl">
-                {total} hours used, {hoursLeft} hours left
-              </h2>
+              <div className="flex">
+                <Form />
+                <div className="flex-col flex-1 text-right">
+                  <p>{total} hours used</p>
+                  <p>{hoursLeft} hours left</p>
+                </div>
+              </div>
             </div>
             <div className="flex space-x-6">
               <WorkBox className="flex-1" total={work} />
