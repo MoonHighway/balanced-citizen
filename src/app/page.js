@@ -1,18 +1,69 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
 
-function BalanceBoard() {
+function WorkBox() {
   return (
-    <div>
-      <ColorBox />
+    <div className="w-64 h-64 bg-swirl-green rounded-lg shadow-lg p-4">
+      <p className="text-white text-xl">Workin'</p>
+      <p className="text-white text-6xl text-center leading-loose">
+        3
+      </p>
     </div>
   );
 }
-function ColorBox() {
+
+function StriveBox() {
   return (
-    <div className="w-64 h-64 bg-blue-500 rounded-lg shadow-lg p-4">
-      <p className="text-white">ok</p>
+    <div className="w-64 h-64 bg-swirl-orange rounded-lg shadow-lg p-4">
+      <p className="text-white text-xl">Strivin'</p>
+      <p className="text-white text-6xl text-center leading-loose">
+        9
+      </p>
     </div>
+  );
+}
+
+function ThriveBox() {
+  return (
+    <div className="w-64 h-64 bg-swirl-red rounded-lg shadow-lg p-4">
+      <p className="text-white text-xl">Thrivin'</p>
+      <p className="text-white text-6xl text-center leading-loose">
+        12
+      </p>
+    </div>
+  );
+}
+
+function BalanceBoard() {
+  return (
+    <table className="min-w-full bg-white">
+      <thead>
+        <tr className="w-full h-16 border-gray-300 border-b py-8">
+          <th className="pl-8 text-gray-600 font-bold pr-6 text-left text-sm uppercase tracking-wider">
+            Activity
+          </th>
+          <th className="text-gray-600 font-bold pr-6 text-left text-sm uppercase tracking-wider">
+            Category
+          </th>
+          <th className="text-gray-600 font-bold pr-6 text-left text-sm uppercase tracking-wider">
+            Length
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr className="h-24 border-gray-300 border-b">
+          <td className="pl-8 pr-6 text-left text-sm">
+            Swimming
+          </td>
+          <td className="pr-6 text-left text-sm">
+            Recreation
+          </td>
+          <td className="pr-6 text-left text-sm">
+            30 mins
+          </td>
+        </tr>
+      </tbody>
+    </table>
   );
 }
 
@@ -23,6 +74,7 @@ export default function Home() {
         <div className="bg-white p-8 rounded-lg shadow-md">
           <SignedOut>
             <div>
+              <div></div>
               <h1 className="text-3xl font-bold mb-4">
                 Find More Balance
               </h1>
@@ -47,6 +99,11 @@ export default function Home() {
             </div>
           </SignedOut>
           <SignedIn>
+            <div className="flex space-x-4">
+              <WorkBox className="flex-1" />
+              <StriveBox className="flex-1" />
+              <ThriveBox className="flex-1" />
+            </div>
             <BalanceBoard />
           </SignedIn>
         </div>
