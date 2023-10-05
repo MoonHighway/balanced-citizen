@@ -1,40 +1,17 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { StriveBox } from "./components/StriveBox";
+import { ThriveBox } from "./components/ThriveBox";
+import { WorkBox } from "./components/WorkBox";
+import { cookies } from "next/headers";
+import NewActivity from "./components/NewActivity";
 
-function WorkBox() {
-  return (
-    <div className="w-64 h-64 bg-swirl-green rounded-lg shadow-lg p-4">
-      <p className="text-white text-2xl">Workin'</p>
-      <p className="text-white text-6xl text-center leading-loose">
-        3
-      </p>
-    </div>
-  );
-}
-
-function StriveBox() {
-  return (
-    <div className="w-64 h-64 bg-swirl-orange rounded-lg shadow-lg p-4">
-      <p className="text-white text-2xl">Strivin'</p>
-      <p className="text-white text-6xl text-center leading-loose">
-        9
-      </p>
-    </div>
-  );
-}
-
-function ThriveBox() {
-  return (
-    <div className="w-64 h-64 bg-swirl-red rounded-lg shadow-lg p-4">
-      <p className="text-white text-2xl">Thrivin'</p>
-      <p className="text-white text-6xl text-center leading-loose">
-        12
-      </p>
-    </div>
-  );
-}
-
-function BalanceBoard() {
+async function BalanceBoard() {
+  const supabase = createServerComponentClient({ cookies });
+  const { data: activities } = await supabase
+    .from("activities")
+    .select();
   return (
     <table className="min-w-full bg-white">
       <thead>
@@ -46,22 +23,27 @@ function BalanceBoard() {
             Category
           </th>
           <th className="text-gray-600 font-bold pr-6 text-left text-sm uppercase tracking-wider">
-            Length
+            Hours
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr className="h-24 border-gray-300 border-b">
-          <td className="pl-8 pr-6 text-left text-sm">
-            Swimming
-          </td>
-          <td className="pr-6 text-left text-sm">
-            Recreation
-          </td>
-          <td className="pr-6 text-left text-sm">
-            30 mins
-          </td>
-        </tr>
+        {activities.map((activity) => (
+          <tr
+            key={activity.id}
+            className="h-24 border-gray-300 border-b"
+          >
+            <td className="pl-8 pr-6 text-left text-sm">
+              {activity.title}
+            </td>
+            <td className="pr-6 text-left text-sm">
+              {activity.category}
+            </td>
+            <td className="pr-6 text-left text-sm">
+              {activity.length}
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
   );
@@ -99,7 +81,14 @@ export default function Home() {
             </div>
           </SignedOut>
           <SignedIn>
-            <div className="flex space-x-4">
+            <div>
+              <h2>Add a new activity</h2>
+              <NewActivity />
+            </div>
+            <div>
+              <h2 className="leading-loose">Summary</h2>
+            </div>
+            <div className="flex space-x-6">
               <WorkBox className="flex-1" />
               <StriveBox className="flex-1" />
               <ThriveBox className="flex-1" />
