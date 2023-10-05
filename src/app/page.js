@@ -4,7 +4,7 @@ import Link from "next/link";
 function WorkBox() {
   return (
     <div className="w-64 h-64 bg-swirl-green rounded-lg shadow-lg p-4">
-      <p className="text-white text-xl">Workin'</p>
+      <p className="text-white text-2xl">Workin'</p>
       <p className="text-white text-6xl text-center leading-loose">
         3
       </p>
@@ -15,7 +15,7 @@ function WorkBox() {
 function StriveBox() {
   return (
     <div className="w-64 h-64 bg-swirl-orange rounded-lg shadow-lg p-4">
-      <p className="text-white text-xl">Strivin'</p>
+      <p className="text-white text-2xl">Strivin'</p>
       <p className="text-white text-6xl text-center leading-loose">
         9
       </p>
@@ -26,7 +26,7 @@ function StriveBox() {
 function ThriveBox() {
   return (
     <div className="w-64 h-64 bg-swirl-red rounded-lg shadow-lg p-4">
-      <p className="text-white text-xl">Thrivin'</p>
+      <p className="text-white text-2xl">Thrivin'</p>
       <p className="text-white text-6xl text-center leading-loose">
         12
       </p>

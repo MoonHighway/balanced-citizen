@@ -18,6 +18,9 @@ module.exports = {
         "swirl-orange": "#ebae7d",
         "swirl-green": "#056b82",
         "swirl-red": "#eb552d"
+      },
+      lineHeight: {
+        "big-height": "3"
       }
     }
   },
