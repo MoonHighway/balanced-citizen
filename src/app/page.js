@@ -19,18 +19,18 @@ function ColorBox() {
 export default function Home() {
   return (
     <>
-      <main className="bg-blue-300 min-h-screen flex items-center justify-center">
+      <main className="bg-image min-h-screen flex items-center justify-center">
         <div className="bg-white p-8 rounded-lg shadow-md">
           <SignedOut>
-            <>
+            <div>
               <h1 className="text-3xl font-bold mb-4">
-                Be A Balanced Citizen
+                Find More Balance
               </h1>
               <p>
                 Already a balanced citizen?{" "}
                 <Link
                   href="/sign-in"
-                  className="text-blue-500 font-bold"
+                  className="text-blue-600 font-bold"
                 >
                   Sign In
                 </Link>
@@ -39,12 +39,12 @@ export default function Home() {
                 Want to be a balanced citizen?{" "}
                 <Link
                   href="/sign-up"
-                  className="text-blue-500 font-bold"
+                  className="text-blue-600 font-bold"
                 >
                   Sign Up
                 </Link>
               </p>
-            </>
+            </div>
           </SignedOut>
           <SignedIn>
             <BalanceBoard />

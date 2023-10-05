@@ -18,12 +18,12 @@ export const metadata = {
 
 function Header() {
   return (
-    <header className="header flex p-4 bg-blue-500">
+    <header className="header flex p-4 bg-header-blue">
       <div className="column1 flex-1 text-white">
         <Image src="/logo.png" width={100} height={100} />
       </div>
       <div>
-        <div className="column2 flex-2 text-white flex justify-end">
+        <div className="column2 flex-1 text-white flex justify-end">
           <SignedOut>
             <Link href="/sign-in">Sign In</Link>
           </SignedOut>

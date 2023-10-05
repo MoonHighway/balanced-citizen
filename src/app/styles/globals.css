@@ -42,3 +42,9 @@ body {
   padding-top: 2rem;
   flex: 1;
 }
+
+.bg-image {
+  background-image: url("/background.png");
+  background-size: cover;
+  background-position: center;
+}
