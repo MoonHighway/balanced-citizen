@@ -1,55 +1,31 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
 import { StriveBox } from "./components/StriveBox";
 import { ThriveBox } from "./components/ThriveBox";
 import { WorkBox } from "./components/WorkBox";
-import { cookies } from "next/headers";
-import NewActivity from "./components/NewActivity";
+import Form from "./components/Form";
+import { BalanceBoard } from "./components/BalanceBoard";
 
-async function BalanceBoard() {
+export default async function Home() {
   const supabase = createServerComponentClient({ cookies });
   const { data: activities } = await supabase
     .from("activities")
     .select();
-  return (
-    <table className="min-w-full bg-white">
-      <thead>
-        <tr className="w-full h-16 border-gray-300 border-b py-8">
-          <th className="pl-8 text-gray-600 font-bold pr-6 text-left text-sm uppercase tracking-wider">
-            Activity
-          </th>
-          <th className="text-gray-600 font-bold pr-6 text-left text-sm uppercase tracking-wider">
-            Category
-          </th>
-          <th className="text-gray-600 font-bold pr-6 text-left text-sm uppercase tracking-wider">
-            Hours
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {activities.map((activity) => (
-          <tr
-            key={activity.id}
-            className="h-24 border-gray-300 border-b"
-          >
-            <td className="pl-8 pr-6 text-left text-sm">
-              {activity.title}
-            </td>
-            <td className="pr-6 text-left text-sm">
-              {activity.category}
-            </td>
-            <td className="pr-6 text-left text-sm">
-              {activity.length}
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
-}
 
-export default function Home() {
+  const strive = activities
+    .filter((activity) => activity.category === "strivin")
+    .reduce((a, c) => a + c.length, 0);
+  const work = activities
+    .filter((activity) => activity.category === "workin")
+    .reduce((a, c) => a + c.length, 0);
+  const thrive = activities
+    .filter((activity) => activity.category === "thrivin")
+    .reduce((a, c) => a + c.length, 0);
+  const total = strive + work + thrive;
+  const hoursLeft = 24 - total;
+
   return (
     <>
       <main className="bg-image min-h-screen flex items-center justify-center">
@@ -82,16 +58,26 @@ export default function Home() {
           </SignedOut>
           <SignedIn>
             <div>
-              <h2>Add a new activity</h2>
-              <NewActivity />
+              <h2 className="text-xl">
+                Add a new activity
+              </h2>
+              <Form />
             </div>
             <div>
-              <h2 className="leading-loose">Summary</h2>
+              <h2 className="leading-loose text-xl">
+                {total} hours used, {hoursLeft} hours left
+              </h2>
             </div>
             <div className="flex space-x-6">
-              <WorkBox className="flex-1" />
-              <StriveBox className="flex-1" />
-              <ThriveBox className="flex-1" />
+              <WorkBox className="flex-1" total={work} />
+              <StriveBox
+                className="flex-1"
+                total={strive}
+              />
+              <ThriveBox
+                className="flex-1"
+                total={thrive}
+              />
             </div>
             <BalanceBoard />
           </SignedIn>

@@ -20,7 +20,12 @@ function Header() {
   return (
     <header className="header flex p-4 bg-header-blue">
       <div className="column1 flex-1 text-white">
-        <Image src="/logo.png" width={100} height={100} />
+        <Image
+          alt="balanced citizen logo"
+          src="/logo.png"
+          width={100}
+          height={100}
+        />
       </div>
       <div>
         <div className="column2 flex-1 text-white flex justify-end">
