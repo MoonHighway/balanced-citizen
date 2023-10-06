@@ -1,12 +1,4 @@
-export const dynamic = "force-dynamic";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
-
-export async function BalanceBoard() {
-  const supabase = createServerComponentClient({ cookies });
-  const { data: activities } = await supabase
-    .from("activities")
-    .select();
+export async function BalanceBoard({ activities }) {
   return (
     <table className="min-w-full bg-white">
       <thead>

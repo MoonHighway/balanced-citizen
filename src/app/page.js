@@ -81,7 +81,7 @@ export default async function Home() {
                 total={thrive}
               />
             </div>
-            <BalanceBoard />
+            <BalanceBoard activities={activities} />
           </SignedIn>
         </div>
       </main>
