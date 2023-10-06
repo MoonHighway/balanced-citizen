@@ -33,7 +33,7 @@ export default async function Home() {
       <main className="bg-image min-h-screen flex items-center justify-center">
         <div className="bg-white p-8 rounded-lg shadow-md">
           <SignedOut>
-            <div>
+            <div className="dark:text-black">
               <h1 className="text-3xl font-bold mb-4">
                 Find More Balance
               </h1>
@@ -58,7 +58,7 @@ export default async function Home() {
             </div>
           </SignedOut>
           <SignedIn>
-            <div className="loose-leading">
+            <div className="loose-leading dark:text-black">
               <h2 className="text-2xl font-semibold">
                 Add a New Activity
               </h2>

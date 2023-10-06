@@ -1,6 +1,6 @@
 export async function BalanceBoard({ activities }) {
   return (
-    <table className="min-w-full bg-white">
+    <table className="dark:text-black min-w-full bg-white">
       <thead>
         <tr className="w-full h-16 border-gray-300 border-b py-8">
           <th className="pl-8 text-gray-600 font-bold pr-6 text-left text-sm uppercase tracking-wider">
