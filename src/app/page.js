@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
